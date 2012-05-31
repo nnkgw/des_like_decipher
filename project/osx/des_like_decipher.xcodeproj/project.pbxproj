@@ -1,0 +1,206 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		227BC8861552AE19000DCFFB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 227BC8851552AE19000DCFFB /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		227BC8761552ADA9000DCFFB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		227BC8781552ADA9000DCFFB /* des_like_decipher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = des_like_decipher; sourceTree = BUILT_PRODUCTS_DIR; };
+		227BC8851552AE19000DCFFB /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		227BC8751552ADA9000DCFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		227BC86D1552ADA9000DCFFB = {
+			isa = PBXGroup;
+			children = (
+				227BC87B1552ADA9000DCFFB /* src */,
+				227BC8791552ADA9000DCFFB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		227BC8791552ADA9000DCFFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				227BC8781552ADA9000DCFFB /* des_like_decipher */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		227BC87B1552ADA9000DCFFB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				227BC8851552AE19000DCFFB /* main.cpp */,
+			);
+			name = src;
+			path = "des_like-decipher";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		227BC8771552ADA9000DCFFB /* des_like_decipher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 227BC8821552ADA9000DCFFB /* Build configuration list for PBXNativeTarget "des_like_decipher" */;
+			buildPhases = (
+				227BC8741552ADA9000DCFFB /* Sources */,
+				227BC8751552ADA9000DCFFB /* Frameworks */,
+				227BC8761552ADA9000DCFFB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = des_like_decipher;
+			productName = "des_like-decipher";
+			productReference = 227BC8781552ADA9000DCFFB /* des_like_decipher */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		227BC86F1552ADA9000DCFFB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 227BC8721552ADA9000DCFFB /* Build configuration list for PBXProject "des_like_decipher" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 227BC86D1552ADA9000DCFFB;
+			productRefGroup = 227BC8791552ADA9000DCFFB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				227BC8771552ADA9000DCFFB /* des_like_decipher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		227BC8741552ADA9000DCFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				227BC8861552AE19000DCFFB /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		227BC8801552ADA9000DCFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		227BC8811552ADA9000DCFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		227BC8831552ADA9000DCFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = des_like_decipher;
+			};
+			name = Debug;
+		};
+		227BC8841552ADA9000DCFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = des_like_decipher;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		227BC8721552ADA9000DCFFB /* Build configuration list for PBXProject "des_like_decipher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				227BC8801552ADA9000DCFFB /* Debug */,
+				227BC8811552ADA9000DCFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		227BC8821552ADA9000DCFFB /* Build configuration list for PBXNativeTarget "des_like_decipher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				227BC8831552ADA9000DCFFB /* Debug */,
+				227BC8841552ADA9000DCFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 227BC86F1552ADA9000DCFFB /* Project object */;
+}
