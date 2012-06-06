@@ -111,9 +111,9 @@ int main(int argc, char* argv[]) {
     }
     for(int i = 0; i < 16; i++) {
       size_t count = s[i].size();
-      printf("%02d | ", i);
+      printf("%2d | ", i);
       for(int j = 0; j < count; j++) {
-        printf( "%02d ", s[i][j] );
+        printf( "%2d ", s[i][j] );
       }
       printf("\n");
     }
@@ -126,14 +126,13 @@ int main(int argc, char* argv[]) {
       bin_to_string(bin, dec, 4);
       bin[4] = 0;
       printf("%2s | ", bin);
-          for(int j = 0; j < count; j++) {
-              dec_to_bin(dec, s[i][j], 6);
-              bin_to_string(bin, dec, 6);
-              bin[6] = 0;
-              printf( "%2s ",  bin);
-          }
-          printf("\n");
+      for(int j = 0; j < count; j++) {
+        dec_to_bin(dec, s[i][j], 6);
+        bin_to_string(bin, dec, 6);
+        bin[6] = 0;
+        printf( "%2s ",  bin);
       }
+      printf("\n");
     }
     printf("\n");
     std::vector<char> distribution[64];
@@ -152,15 +151,10 @@ int main(int argc, char* argv[]) {
       }
     }
     for(int i = 0; i < 64; i++) {
-      printf("%02d | ", i);
+      printf("%2d | ", i);
       int count = distribution[i].size();
       char frequency[16];
-        memset(frequency, 0, sizeof(char)*16);
-#if 0
-      for(int j = 0; j < count; j++) {
-        printf("%02d ", distribution[i][j]);
-      }
-#else
+      memset(frequency, 0, sizeof(char)*16);
       for(int j = 0; j < count; j++) {
           for(int k = 0; k < 16; k++) {
             if (distribution[i][j] == k) {
@@ -169,9 +163,9 @@ int main(int argc, char* argv[]) {
           }
       }
       for(int j = 0; j < 16; j++) {
-        printf("%02d ", frequency[j]);
+        printf("%2d ", frequency[j]);
       }
-#endif
       printf("\n");
     }
+  }
 }
