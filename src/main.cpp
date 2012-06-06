@@ -136,6 +136,11 @@ int main(int argc, char* argv[]) {
     }
     printf("\n");
     std::vector<char> distribution[64];
+    struct sXYPair{
+      char x[2];
+      char y[2];
+    };
+    std::vector<sXYPair> less_freq;
     for(int i = 0; i < 64; i++) {
       for(int j = 0; j < 64; j++) {
         int x_xor_x = i;
@@ -147,6 +152,14 @@ int main(int argc, char* argv[]) {
         int y2 = s_box(0, bin);
         int y_xor_y = y1;
         y_xor_y ^=y2;
+        if ((x_xor_x == 52) && (y_xor_y == 4)) {
+          sXYPair pair;
+          pair.x[0] = i;
+          pair.x[1] = j;
+          pair.y[0] = y1;
+          pair.y[1] = y2;
+          less_freq.push_back(pair);
+        }
         distribution[x_xor_x].push_back(y_xor_y);
       }
     }
@@ -167,5 +180,13 @@ int main(int argc, char* argv[]) {
       }
       printf("\n");
     }
+    int count = less_freq.size();
+    for(int i = 0; i < count; i++) {
+      printf("(x,y)=(%2d,%2d), (x',y')=(%2d,%2d)\n", less_freq[i].x[0],
+                                                     less_freq[i].y[0],
+                                                     less_freq[i].x[1],
+                                                     less_freq[i].y[1]);
+    }
+    printf("\n");
   }
 }
