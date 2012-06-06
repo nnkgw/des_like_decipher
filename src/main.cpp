@@ -46,10 +46,19 @@ int feistel_function(char* out_R, char* in_R) {
   for (int i = 0; i < 12; i++) { preS[i] ^= K[i];          }  // xor K
   char num_str[8];
   bin_to_string(num_str, preS, 8);
+#if 0
   if (strncmp(&num_str[0],"010011",6) == 0) {
     s_transform(0, &preS[0], &postS[0]);
+#else
+  if (strncmp(&num_str[0],"001110",6) == 0) {
+    s_transform(1, &preS[0], &postS[0]);
+#endif
     bin_to_string(num_str, postS, 8);
+#if 0
     if (strncmp(&num_str[0],"0110",4) == 0) {
+#else
+    if (strncmp(&num_str[0],"0100",4) == 0) {
+#endif
       return 0;
     }
   }
@@ -97,6 +106,10 @@ int main(int argc, char* argv[]) {
     }
     // 111001 xor 
     // 010011  
+    // 101010 = K
+      
+    // 100100 xor
+    // 001110
     // 101010 = K
   }
   {
@@ -147,12 +160,16 @@ int main(int argc, char* argv[]) {
         x_xor_x ^= j;
         char bin[6];
         dec_to_bin(bin, i, 6);
-        int y1 = s_box(0, bin);
+        int y1 = s_box(1, bin);
         dec_to_bin(bin, j, 6);
-        int y2 = s_box(0, bin);
+        int y2 = s_box(1, bin);
         int y_xor_y = y1;
         y_xor_y ^=y2;
+#if 0
         if ((x_xor_x == 52) && (y_xor_y == 4)) {
+#else
+        if ((x_xor_x == 59) && (y_xor_y == 3)) {
+#endif
           sXYPair pair;
           pair.x[0] = i;
           pair.x[1] = j;
@@ -180,6 +197,7 @@ int main(int argc, char* argv[]) {
       }
       printf("\n");
     }
+    printf("\n");
     int count = less_freq.size();
     for(int i = 0; i < count; i++) {
       printf("(x,y)=(%2d,%2d), (x',y')=(%2d,%2d)\n", less_freq[i].x[0],
