@@ -39,26 +39,17 @@ void bin_to_string(char* dst, char* src, int num) {
   }
 }
 
-int feistel_function(char* out_R, char* in_R) {
+int feistel_function(int in_S_idx, char* in_R, char* in_PreNum, char* in_PostNum) {
   char preS[12];
   char postS[8];
   for (int i = 0; i < 12; i++) { preS[i] = in_R[ E[i]-1 ]; }  // extension E
   for (int i = 0; i < 12; i++) { preS[i] ^= K[i];          }  // xor K
   char num_str[8];
   bin_to_string(num_str, preS, 8);
-#if 0
-  if (strncmp(&num_str[0],"010011",6) == 0) {
-    s_transform(0, &preS[0], &postS[0]);
-#else
-  if (strncmp(&num_str[0],"001110",6) == 0) {
-    s_transform(1, &preS[0], &postS[0]);
-#endif
+  if (strncmp(&num_str[0], in_PreNum, 6) == 0) {
+    s_transform(in_S_idx, &preS[0], &postS[0]);
     bin_to_string(num_str, postS, 8);
-#if 0
-    if (strncmp(&num_str[0],"0110",4) == 0) {
-#else
-    if (strncmp(&num_str[0],"0100",4) == 0) {
-#endif
+    if (strncmp(&num_str[0], in_PostNum, 4) == 0) {
       return 0;
     }
   }
@@ -93,24 +84,33 @@ void print_result(char* array, int num) {
 }
 
 int main(int argc, char* argv[]) {
-  char L[8];
-  char R[2][8];
-  for(int i = 0; i < 256; i++) {
-    dec_to_bin(&R[0][0], i, 8);
-    char postF[8];
-    int ret = feistel_function(postF, &R[0][0]);
-    if (ret == 0){
-      printf("R=");
-      print_result(&R[0][0], 8);
-      printf("\n");
+  char R[8];
+  struct sHighFreqPair{
+    char prev[6];
+    char post[4];
+  };
+  sHighFreqPair high_freq[2];
+  strncpy(high_freq[0].prev, "010011", 6);
+  strncpy(high_freq[0].post, "0110",   4);
+  strncpy(high_freq[1].prev, "001110", 6);
+  strncpy(high_freq[1].post, "0100",   4);
+  for(int i = 0; i < 2; i++) {
+    for(int j = 0; j < 256; j++) {
+      dec_to_bin(R, j, 8);
+      int ret = feistel_function(i, R, high_freq[i].prev, high_freq[i].post);
+      if (ret == 0){
+        printf("R = ");
+        print_result(R, 8);
+        printf("\n");
+        if (i==0){
+          printf("K = 111001 xor 010011 = 101010\n" );
+        } else {
+          printf("K = 100100 xor 001110 = 101010\n" );
+        }
+        break;
+      }
     }
-    // 111001 xor 
-    // 010011  
-    // 101010 = K
-      
-    // 100100 xor
-    // 001110
-    // 101010 = K
+    printf("\n");
   }
   {
     printf("\n");
