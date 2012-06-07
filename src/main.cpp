@@ -39,6 +39,19 @@ void bin_to_string(char* dst, char* src, int num) {
   }
 }
 
+void string_to_bin(char* dst, char* src, int num) {
+  char num_str[num];
+  for (int i = 0; i < num; i++) {
+    dst[i] = src[i] - '0';
+  }
+}
+
+void bin_xor(char* dst, char* bin_a, char* bin_b, int n) {
+  for(int i = 0; i < n; i++) {
+    dst[i] = (bin_a[i] ^ bin_b[i]);
+  }
+}
+
 int feistel_function(int in_S_idx, char* in_R, char* in_PreNum, char* in_PostNum) {
   char preS[12];
   char postS[8];
@@ -69,8 +82,8 @@ void bin_to_dec(int* dec, char* bin, int num) {
   int n = 0;
   for (int i = 0; i < num; i++) {
     switch(bin[num-i-1]) {
-    case 1: n += 1;  // fall through
-    case 0: n *= 2; break;
+    case   1: n += 1;  // fall through
+    case   0: n *= 2; break;
     }
   }
   n /= 2;
@@ -86,27 +99,33 @@ void print_result(char* array, int num) {
 int main(int argc, char* argv[]) {
   char R[8];
   struct sHighFreqPair{
-    char prev[6];
-    char post[4];
+    char prev[6+1];
+    char post[4+1];
   };
   sHighFreqPair high_freq[2];
-  strncpy(high_freq[0].prev, "010011", 6);
-  strncpy(high_freq[0].post, "0110",   4);
-  strncpy(high_freq[1].prev, "001110", 6);
-  strncpy(high_freq[1].post, "0100",   4);
+  strncpy(high_freq[0].prev, "010011", 6+1);
+  strncpy(high_freq[0].post, "0110",   4+1);
+  strncpy(high_freq[1].prev, "001110", 6+1);
+  strncpy(high_freq[1].post, "0100",   4+1);
   for(int i = 0; i < 2; i++) {
     for(int j = 0; j < 256; j++) {
       dec_to_bin(R, j, 8);
       int ret = feistel_function(i, R, high_freq[i].prev, high_freq[i].post);
       if (ret == 0){
-        printf("R = ");
+        printf("R = ", i);
         print_result(R, 8);
         printf("\n");
-        if (i==0){
-          printf("K = 111001 xor 010011 = 101010\n" );
-        } else {
-          printf("K = 100100 xor 001110 = 101010\n" );
-        }
+        char r_str[6+1];
+        bin_to_string(r_str, R, 6);
+        r_str[6] = 0;
+        char h_freq_bin[6+1];
+        string_to_bin(h_freq_bin, high_freq[i].prev, 6);
+        char k_bin[6];
+        bin_xor(k_bin, R, h_freq_bin, 6);
+        char k_str[6+1];
+        bin_to_string(k_str, k_bin, 6);
+        k_str[6] = 0;
+        printf("K = %s xor %s = %s\n", r_str, high_freq[i].prev, k_str);
         break;
       }
     }
