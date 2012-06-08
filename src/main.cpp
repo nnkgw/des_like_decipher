@@ -3,8 +3,8 @@
 #include <string.h>
 #include <vector>
 
-char K[] = { 1,0,1,0,1,0,1,0,1,0,1,0 };
-char E[] = { 1,2,3,4,5,6,7,8,1,2,3,4 };  // 1 origin
+char K[] = { 1,1,1,1,1,1,0,0,0,0,0,0 };
+char E[] = { 1,2,3,4,5,6,1,2,3,4,5,6 };  // 1 origin
 char P[] = { 1,2,3,4,5,6,7,8 };          // 1 origin
 char S[2][64] = {                        // 0 origin
     { 14,  4, 13,  1,  2, 15, 11,  8,  3, 10,  6, 12,  5,  9,  0,  7,
@@ -57,11 +57,14 @@ int feistel_function(int in_S_idx, char* in_R, char* in_PreNum, char* in_PostNum
   char postS[8];
   for (int i = 0; i < 12; i++) { preS[i] = in_R[ E[i]-1 ]; }  // extension E
   for (int i = 0; i < 12; i++) { preS[i] ^= K[i];          }  // xor K
-  char num_str[8];
-  bin_to_string(num_str, preS, 8);
-  if (strncmp(&num_str[0], in_PreNum, 6) == 0) {
-    s_transform(in_S_idx, &preS[0], &postS[0]);
+  char num_str[12];
+  int num_str_index = (in_S_idx==0) ? 0 : 6;
+  bin_to_string(num_str, preS, 12);
+  if (strncmp(&num_str[num_str_index], in_PreNum, 6) == 0) {
+    int preS_index = (in_S_idx==0) ? 0 : 6;
+    s_transform(in_S_idx, &preS[preS_index], &postS[0]);
     bin_to_string(num_str, postS, 8);
+    //num_str_index = (in_S_idx==0) ? 0 : 4;
     if (strncmp(&num_str[0], in_PostNum, 4) == 0) {
       return 0;
     }
