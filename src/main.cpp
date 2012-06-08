@@ -185,6 +185,23 @@ void print_frequency(int idx) {
                                                    less_freq[i].y[0],
                                                    less_freq[i].x[1],
                                                    less_freq[i].y[1]);
+    char bin[4][8];
+    dec_to_bin(&bin[0][0], less_freq[i].x[0], 6);
+    dec_to_bin(&bin[1][0], less_freq[i].y[0], 4);
+    dec_to_bin(&bin[2][0], less_freq[i].x[1], 6);
+    dec_to_bin(&bin[3][0], less_freq[i].y[1], 4);
+    char bin_string[4][6+1];
+    for(int j = 0; j < 4; j++) {
+      memset(&bin_string[j][0], 0, sizeof(char)*(6+1));
+    }
+    bin_to_string(&bin_string[0][0], &bin[0][0], 6);
+    bin_to_string(&bin_string[1][0], &bin[1][0], 4);
+    bin_to_string(&bin_string[2][0], &bin[2][0], 6);
+    bin_to_string(&bin_string[3][0], &bin[3][0], 4);
+    printf("(x,y)=(%s,%s), (x',y')=(%s,%s)\n", &bin_string[0][0],
+                                               &bin_string[1][0],
+                                               &bin_string[2][0],
+                                               &bin_string[3][0] );
   }
   printf("\n");
 }
@@ -196,8 +213,6 @@ void print_result(char* array, int num) {
 }
 
 int main(int argc, char* argv[]) {
-  print_s_table(0);
-  print_frequency(0);
   print_s_table(1);
   print_frequency(1);
   char R[8];
