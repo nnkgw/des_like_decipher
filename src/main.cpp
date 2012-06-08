@@ -33,17 +33,19 @@ void s_transform(int n, char* preS, char* postS){
 }
 
 void bin_to_string(char* dst, char* src, int num) {
-  char num_str[num];
+  char* num_str = (char*)malloc(sizeof(char)*num);
   for (int i = 0; i < num; i++) {
     dst[i] = src[i] + '0';
   }
+  free(num_str);
 }
 
 void string_to_bin(char* dst, char* src, int num) {
-  char num_str[num];
+  char* num_str = (char*)malloc(sizeof(char)*num);
   for (int i = 0; i < num; i++) {
     dst[i] = src[i] - '0';
   }
+  free(num_str);
 }
 
 void bin_xor(char* dst, char* bin_a, char* bin_b, int n) {
